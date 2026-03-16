@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pantallas y Yo · Encuesta de Pantallas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ====== RESET ====== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#faf9f7;--bg-dark:#0f172a;--bg-night:#1a1a2e;
+  --text:#1e293b;--text2:#64748b;--text-light:#94a3b8;
+  --green:#059669;--green-light:#d1fae5;--green-bg:#ecfdf5;
+  --amber:#d97706;--amber-light:#fef3c7;--amber-bg:#fffbeb;
+  --red:#dc2626;--red-light:#fee2e2;--red-bg:#fef2f2;
+  --indigo:#6366f1;--indigo-light:#e0e7ff;
+  --c4A:#6366f1;--c4B:#8b5cf6;--c5A:#0ea5e9;--c5B:#06b6d4;
+  --c6A:#a855f7;--c6B:#f43f5e;--c6C:#f97316;
+  --shadow:0 1px 3px rgba(0,0,0,.08),0 4px 14px rgba(0,0,0,.04);
+  --shadow-lg:0 4px 20px rgba(0,0,0,.1),0 8px 32px rgba(0,0,0,.06);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* ====== TYPOGRAPHY ====== */
+h1,h2,h3,.display{font-family:'Space Grotesk',sans-serif}
+.container{max-width:900px;margin:0 auto;padding:0 2rem}
+
+/* ====== NAV ====== */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;transition:all .4s}
+nav.scrolled{background:rgba(255,255,255,.92);backdrop-filter:blur(12px);box-shadow:var(--shadow)}
+.nav-brand{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.1rem;color:#fff;transition:color .4s}
+nav.scrolled .nav-brand{color:var(--text)}
+.nav-links{display:flex;gap:1.5rem;list-style:none}
+.nav-links a{color:rgba(255,255,255,.7);text-decoration:none;font-size:.85rem;font-weight:500;transition:color .3s}
+nav.scrolled .nav-links a{color:var(--text2)}
+.nav-links a:hover{color:#fff}
+nav.scrolled .nav-links a:hover{color:var(--text)}
+@media(max-width:768px){.nav-links{display:none}}
+
+/* ====== HERO ====== */
+.hero{min-height:100vh;background:var(--bg-dark);color:#fff;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-20%;right:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(99,102,241,.15) 0%,transparent 70%);border-radius:50%}
+.hero::after{content:'';position:absolute;bottom:-10%;left:-10%;width:400px;height:400px;background:radial-gradient(circle,rgba(6,182,212,.1) 0%,transparent 70%);border-radius:50%}
+.hero-inner{position:relative;z-index:1;padding:6rem 2rem 4rem}
+.hero-tag{display:inline-block;border:1px solid rgba(255,255,255,.2);border-radius:100px;padding:.4rem 1.2rem;font-size:.8rem;color:rgba(255,255,255,.6);letter-spacing:.05em;margin-bottom:2rem}
+.hero h1{font-size:clamp(3rem,8vw,6rem);font-weight:700;line-height:1;letter-spacing:-.03em;margin-bottom:1.5rem}
+.hero h1 em{font-style:normal;color:#818cf8}
+.hero-sub{font-size:clamp(1.1rem,2.5vw,1.4rem);color:rgba(255,255,255,.6);max-width:540px;line-height:1.6;margin-bottom:3rem}
+.hero-stats{display:flex;gap:3rem;flex-wrap:wrap}
+.hero-stat{display:flex;flex-direction:column}
+.hero-stat .num{font-family:'Space Grotesk',sans-serif;font-size:3.5rem;font-weight:700;line-height:1;color:#fff}
+.hero-stat .lbl{font-size:.85rem;color:rgba(255,255,255,.4);margin-top:.3rem}
+.scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.3);font-size:.8rem;display:flex;flex-direction:column;align-items:center;gap:.5rem;animation:float 3s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-8px)}}
+.scroll-hint svg{width:20px;height:20px;stroke:rgba(255,255,255,.3)}
+
+/* ====== CHAPTERS ====== */
+.chapter{padding:6rem 0}
+.ch-head{margin-bottom:3rem}
+.ch-num{font-family:'Space Grotesk',sans-serif;font-size:5rem;font-weight:700;color:rgba(99,102,241,.1);line-height:1;display:block;margin-bottom:-.5rem}
+.ch-head h2{font-size:clamp(1.8rem,4vw,2.5rem);font-weight:700;color:var(--text);margin-bottom:.5rem}
+.ch-head p{color:var(--text2);font-size:1.05rem;max-width:500px}
+
+/* ====== NARRATIVE BREAKS ====== */
+.narrative{padding:5rem 0;text-align:center}
+.narrative p{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.4rem,3.5vw,2.2rem);font-weight:600;color:var(--text);max-width:700px;margin:0 auto;line-height:1.4}
+.narrative strong{color:var(--indigo)}
+.narrative .dim{color:var(--text2);font-weight:400;font-size:.6em;display:block;margin-top:.5rem}
+
+/* ====== DEVICE BARS ====== */
+.dev-section{margin-bottom:3rem}
+.dev-section h3{font-size:1.1rem;font-weight:600;margin-bottom:.3rem}
+.dev-section .meta{font-size:.8rem;color:var(--text2);margin-bottom:1.2rem}
+.dev-row{display:flex;align-items:center;gap:.8rem;margin-bottom:.6rem}
+.dev-icon{width:32px;height:32px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.dev-icon svg{width:22px;height:22px;stroke:var(--text2);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.dev-name{width:110px;flex-shrink:0;font-size:.82rem;color:var(--text2);text-align:right}
+.dev-track{flex:1;height:26px;background:#f1f5f9;border-radius:13px;overflow:hidden;position:relative}
+.dev-fill{height:100%;border-radius:13px;display:flex;align-items:center;justify-content:flex-end;padding:0 .7rem;font-size:.75rem;font-weight:600;color:#fff;transition:width 1.2s cubic-bezier(.23,1,.32,1);width:0}
+.dev-fill.animated{width:var(--w)}
+.dev-pct{width:40px;flex-shrink:0;font-size:.82rem;font-weight:600;color:var(--text);text-align:right}
+.dev-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+@media(max-width:700px){.dev-grid{grid-template-columns:1fr}.dev-name{width:90px}}
+
+/* ====== QUESTION BLOCKS ====== */
+.q-block{margin-bottom:3rem;padding:2rem;background:#fff;border-radius:16px;box-shadow:var(--shadow);transition:transform .3s}
+.q-block:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+.q-number{font-family:'Space Grotesk',sans-serif;font-size:.75rem;font-weight:700;color:var(--indigo);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.3rem}
+.q-text{font-size:1.05rem;font-weight:600;color:var(--text);margin-bottom:1.5rem}
+.q-class{margin-bottom:1rem}
+.q-class-label{font-size:.78rem;font-weight:600;color:var(--text2);margin-bottom:.35rem;display:flex;justify-content:space-between}
+.q-class-label .n{font-weight:400;color:var(--text-light)}
+
+/* ====== WAFFLE CHARTS ====== */
+.waffle{display:flex;flex-wrap:wrap;gap:3px;margin-bottom:.3rem}
+.waffle .dot{width:18px;height:18px;border-radius:4px;transition:all .4s cubic-bezier(.23,1,.32,1);cursor:default;position:relative}
+.waffle .dot:hover{transform:scale(1.3);z-index:1;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+.waffle .dot.a{background:var(--green)}
+.waffle .dot.b{background:var(--amber)}
+.waffle .dot.c{background:var(--red)}
+.waffle .dot.dim{opacity:.15}
+.q-legend{display:flex;gap:1.2rem;flex-wrap:wrap;margin-top:1rem;padding-top:.8rem;border-top:1px solid #f1f5f9}
+.q-legend span{display:flex;align-items:center;gap:.4rem;font-size:.78rem;color:var(--text2)}
+.q-legend .swatch{width:12px;height:12px;border-radius:3px;flex-shrink:0}
+
+/* ====== STACKED BAR (alt viz) ====== */
+.sbar{display:flex;height:32px;border-radius:8px;overflow:hidden;margin-bottom:.3rem}
+.sbar .seg{display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:#fff;transition:width 1.2s cubic-bezier(.23,1,.32,1);overflow:hidden;white-space:nowrap;cursor:default;position:relative}
+.sbar .seg:hover{filter:brightness(1.15)}
+.sbar .seg.sa{background:var(--green)}
+.sbar .seg.sb{background:var(--amber)}
+.sbar .seg.sc{background:var(--red)}
+.sbar-labels{display:flex;font-size:.7rem;color:var(--text-light);margin-bottom:1rem}
+.sbar-labels span{flex:1;text-align:center}
+
+/* ====== NIGHT SECTION ====== */
+.night{background:var(--bg-night);color:#fff;padding:6rem 0;position:relative;overflow:hidden}
+.night::before{content:'';position:absolute;top:40px;right:80px;width:60px;height:60px;border-radius:50%;background:#fbbf24;box-shadow:0 0 40px rgba(251,191,36,.3),0 0 80px rgba(251,191,36,.15);opacity:.7}
+.night .ch-num{color:rgba(255,255,255,.06)}
+.night .ch-head h2{color:#fff}
+.night .ch-head p{color:rgba(255,255,255,.5)}
+.night .q-block{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08)}
+.night .q-number{color:#818cf8}
+.night .q-text{color:#e2e8f0}
+.night .q-class-label{color:rgba(255,255,255,.5)}
+.night .q-class-label .n{color:rgba(255,255,255,.3)}
+.night .q-legend span{color:rgba(255,255,255,.4)}
+.night .q-legend{border-top-color:rgba(255,255,255,.08)}
+
+/* ====== BIG STAT ====== */
+.big-stat{text-align:center;padding:2rem 0}
+.big-stat .val{font-family:'Space Grotesk',sans-serif;font-size:clamp(4rem,10vw,7rem);font-weight:700;line-height:1;margin-bottom:.3rem}
+.big-stat .val.c-green{color:var(--green)}
+.big-stat .val.c-amber{color:var(--amber)}
+.big-stat .val.c-red{color:var(--red)}
+.big-stat .val.c-indigo{color:var(--indigo)}
+.big-stat .caption{font-size:1.1rem;color:var(--text2);max-width:400px;margin:0 auto}
+
+/* ====== HEATMAP ====== */
+.heatmap-wrap{overflow-x:auto;margin:2rem 0}
+.heatmap{border-collapse:separate;border-spacing:3px;width:100%;min-width:600px}
+.heatmap th{font-size:.7rem;font-weight:600;color:var(--text2);padding:.5rem .3rem;text-align:center;white-space:nowrap}
+.heatmap th.row-head{text-align:left;max-width:200px;font-size:.72rem;color:var(--text)}
+.heatmap td{padding:.4rem;text-align:center;font-size:.72rem;font-weight:600;border-radius:6px;min-width:55px;transition:transform .2s}
+.heatmap td:hover{transform:scale(1.08);z-index:1}
+
+/* ====== INSIGHTS ====== */
+.insight{padding:2rem;border-radius:16px;margin-bottom:1.5rem;display:flex;gap:1.5rem;align-items:flex-start;transition:transform .3s}
+.insight:hover{transform:translateY(-2px)}
+.insight.safe{background:var(--green-bg);border:1px solid #a7f3d0}
+.insight.warn{background:var(--amber-bg);border:1px solid #fde68a}
+.insight.danger{background:var(--red-bg);border:1px solid #fecaca}
+.insight-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.2rem}
+.insight.safe .insight-icon{background:#a7f3d0;color:#065f46}
+.insight.warn .insight-icon{background:#fde68a;color:#92400e}
+.insight.danger .insight-icon{background:#fecaca;color:#991b1b}
+.insight h4{font-size:1rem;font-weight:700;margin-bottom:.2rem}
+.insight p{font-size:.88rem;color:var(--text2);line-height:1.5}
+
+/* ====== CLASS FILTER ====== */
+.class-filter{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:2rem}
+.class-btn{padding:.4rem 1rem;border-radius:100px;border:1.5px solid #e2e8f0;background:#fff;color:var(--text2);font-size:.8rem;font-weight:600;cursor:pointer;transition:all .25s;font-family:'Inter',sans-serif}
+.class-btn:hover{border-color:var(--indigo);color:var(--indigo)}
+.class-btn.active{background:var(--indigo);color:#fff;border-color:var(--indigo)}
+
+/* ====== FOOTER ====== */
+footer{padding:4rem 2rem;text-align:center;border-top:1px solid #e2e8f0}
+footer p{color:var(--text2);font-size:.85rem}
+footer .brand{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.2rem;color:var(--text);margin-bottom:.5rem}
+
+/* ====== ANIMATIONS ====== */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.reveal.vis{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
+
+/* ====== SLOPE CHART ====== */
+.slope-chart{position:relative;height:300px;margin:2rem 0}
+.slope-chart svg{width:100%;height:100%}
+.slope-label{font-size:.75rem;fill:var(--text2)}
+.slope-value{font-size:.85rem;font-weight:700}
+.slope-line{stroke-width:2.5;fill:none;stroke-linecap:round}
+.slope-dot{r:5}
+
+/* ====== RESPONSIVE ====== */
+@media(max-width:600px){
+  .hero-stats{gap:1.5rem}
+  .hero-stat .num{font-size:2.5rem}
+  .waffle .dot{width:14px;height:14px}
+  .q-block{padding:1.2rem}
+  .ch-num{font-size:3rem}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <span class="nav-brand">Pantallas y Yo</span>
+  <ul class="nav-links">
+    <li><a href="#dispositivos">Dispositivos</a></li>
+    <li><a href="#habitos">Hábitos</a></li>
+    <li><a href="#noche">Noche</a></li>
+    <li><a href="#dependencia">Dependencia</a></li>
+    <li><a href="#conclusiones">Conclusiones</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner container">
+    <span class="hero-tag">Proyecto STEM &middot; Curso 2025&ndash;2026</span>
+    <h1>Pantallas<br><em>y Yo</em></h1>
+    <p class="hero-sub">134 alumnos de 4.&ordm;, 5.&ordm; y 6.&ordm; de Primaria nos contaron la verdad sobre su relaci&oacute;n con las pantallas.</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><span class="num" data-to="134">0</span><span class="lbl">alumnos</span></div>
+      <div class="hero-stat"><span class="num" data-to="6">0</span><span class="lbl">clases</span></div>
+      <div class="hero-stat"><span class="num" data-to="3">0</span><span class="lbl">cursos</span></div>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <span>Desliza para explorar</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+  </div>
+</section>
+
+<!-- CH1: DEVICES -->
+<section class="chapter" id="dispositivos">
+  <div class="container">
+    <div class="ch-head reveal">
+      <span class="ch-num">01</span>
+      <h2>La mochila digital</h2>
+      <p>Todos estos dispositivos caben en la vida de un alumno de Primaria. Pueden marcar varios.</p>
+    </div>
+    <div id="devices-container"></div>
+  </div>
+</section>
+
+<!-- NARRATIVE -->
+<div class="narrative reveal">
+  <div class="container">
+    <p>El <strong id="stat-movil">0%</strong> de los alumnos de 4.&ordm; y 5.&ordm; ya tiene su propio m&oacute;vil.
+    <span class="dim">Pero, &iquest;cu&aacute;nto tiempo pasan con &eacute;l?</span></p>
+  </div>
+</div>
+
+<!-- CH2: DAILY HABITS (4th-5th) -->
+<section class="chapter" id="habitos">
+  <div class="container">
+    <div class="ch-head reveal">
+      <span class="ch-num">02</span>
+      <h2>El d&iacute;a a d&iacute;a</h2>
+      <p>Cinco preguntas para los alumnos de 4.&ordm; y 5.&ordm; sobre sus h&aacute;bitos con las pantallas.</p>
+    </div>
+    <div class="class-filter" id="filter-45"></div>
+    <div id="q45-container"></div>
+  </div>
+</section>
+
+<!-- BIG STAT -->
+<div class="narrative reveal">
+  <div class="container">
+    <div class="big-stat">
+      <div class="val c-red" data-to="41" data-suffix="%">0%</div>
+      <p class="caption">de los alumnos de 4.&ordm; y 5.&ordm; pasa <strong>m&aacute;s de 4 horas al d&iacute;a</strong> frente a pantallas</p>
+    </div>
+  </div>
+</div>
+
+<!-- NIGHT TRANSITION -->
+<section class="night" id="noche">
+  <div class="container">
+    <div class="ch-head reveal">
+      <span class="ch-num">03</span>
+      <h2>Cuando se apagan las luces</h2>
+      <p>En 6.&ordm;, la encuesta profundiza en el sue&ntilde;o y las pantallas nocturnas. Datos de 6&ordm;B y 6&ordm;C (42 alumnos). 6&ordm;A pendiente.</p>
+    </div>
+    <div class="class-filter" id="filter-6-night"></div>
+    <div id="q6-night-container"></div>
+  </div>
+</section>
+
+<!-- CH4: DEPENDENCY (6th) -->
+<section class="chapter" id="dependencia">
+  <div class="container">
+    <div class="ch-head reveal">
+      <span class="ch-num">04</span>
+      <h2>&iquest;Podr&iacute;a vivir sin pantallas?</h2>
+      <p>Dependencia, relaciones y emociones: lo que cuentan los alumnos de 6.&ordm;.</p>
+    </div>
+    <div class="class-filter" id="filter-6-dep"></div>
+    <div id="q6-dep-container"></div>
+  </div>
+</section>
+
+<!-- COMPARISON NARRATIVE -->
+<div class="narrative reveal">
+  <div class="container">
+    <p>&iquest;Hay diferencias entre <strong>4.&ordm;</strong>, <strong>5.&ordm;</strong> y <strong>6.&ordm;</strong>?
+    <span class="dim">Comparamos las preguntas que comparten los tres cursos.</span></p>
+  </div>
+</div>
+
+<!-- CH5: CONCLUSIONS -->
+<section class="chapter" id="conclusiones">
+  <div class="container">
+    <div class="ch-head reveal">
+      <span class="ch-num">05</span>
+      <h2>Lo que nos dicen los datos</h2>
+      <p>Visi&oacute;n global y conclusiones del estudio.</p>
+    </div>
+
+    <h3 class="reveal" style="margin-bottom:1rem;font-size:1rem">Mapa de calor: % de respuesta C (preocupante) por clase y pregunta</h3>
+    <div class="heatmap-wrap reveal">
+      <table class="heatmap" id="heatmap"></table>
+    </div>
+
+    <h3 class="reveal" style="margin:3rem 0 1rem;font-size:1rem">Comparativa entre cursos (preguntas comunes)</h3>
+    <div class="reveal" id="slope-container"></div>
+
+    <h3 class="reveal" style="margin:3rem 0 1rem;font-size:1rem">Conclusiones clave</h3>
+    <div id="insights-container"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p class="brand">Pantallas y Yo</p>
+    <p>Proyecto STEM &middot; Curso 2025&ndash;2026 &middot; Datos de 134 alumnos (6&ordm;A pendiente)</p>
+    <p style="margin-top:.3rem;opacity:.5">Encuestas an&oacute;nimas en papel, recogidas y analizadas por los alumnos</p>
+  </div>
+</footer>
+
+<script>
+// ============================================================
+// DATA — Add 6A here when ready: just add entries to groups,
+// devices, and q6 data objects. Rendering auto-adapts.
+// ============================================================
+const DATA = {
+  groups: {
+    '4A':{n:23,grade:4},'4B':{n:23,grade:4},
+    '5A':{n:23,grade:5},'5B':{n:23,grade:5},
+    '6B':{n:21,grade:6},'6C':{n:21,grade:6}
+    // '6A':{n:??,grade:6}  ← add when available
+  },
+  classColors: {
+    '4A':'#6366f1','4B':'#8b5cf6','5A':'#0ea5e9','5B':'#06b6d4',
+    '6A':'#a855f7','6B':'#f43f5e','6C':'#f97316'
+  },
+  devices: {
+    '4th':{n:46,label:'4.º (conjunto)',items:{
+      'Móvil propio':27,'Móvil compartido':12,'Tablet':19,
+      'Ordenador':15,'Consola':19,'Smart TV':32}},
+    '5A':{n:23,label:'5ºA',items:{
+      'Móvil propio':12,'Móvil compartido':10,'Tablet':8,
+      'Ordenador':5,'Consola':14,'Smart TV':20}},
+    '5B':{n:23,label:'5ºB',items:{
+      'Móvil propio':18,'Móvil compartido':7,'Tablet':5,
+      'Ordenador':6,'Consola':15,'Smart TV':18}},
+    '6B':{n:21,label:'6ºB',items:{
+      'Móvil propio':16,'Móvil compartido':1,'Tablet propia':10,
+      'Tablet compartida':1,'Ordenador':14,'Consola':8,
+      'Tele propia':7,'Tele familiar':16,'Smartwatch':7}},
+    '6C':{n:21,label:'6ºC',items:{
+      'Móvil propio':18,'Móvil compartido':7,'Tablet propia':12,
+      'Tablet compartida':6,'Ordenador':13,'Consola':16,
+      'Tele propia':12,'Tele familiar':16,'Smartwatch':8}}
+  },
+  q45: [
+    {q:'¿Tienes móvil propio?',a:'Sí, es mío',b:'Uso uno compartido',c:'No tengo móvil',
+     data:{'4A':[11,5,7],'4B':[17,1,5],'5A':[13,6,4],'5B':[18,2,2]}},
+    {q:'¿Cuántas horas usas pantallas al día fuera del cole?',a:'Menos de 2 h',b:'Entre 2 y 4 h',c:'Más de 4 h',
+     data:{'4A':[12,8,13],'4B':[9,3,10],'5A':[7,12,4],'5B':[6,6,11]}},
+    {q:'¿Dónde duerme tu móvil o tablet por la noche?',a:'Fuera de mi habitación',b:'En la mesita, apagado',c:'En la cama / almohada',
+     data:{'4A':[12,8,1],'4B':[2,14,4],'5A':[13,8,2],'5B':[7,11,5]}},
+    {q:'¿Has dejado de hacer deberes o de dormir bien por las pantallas?',a:'Nunca o casi nunca',b:'Alguna vez',c:'Me pasa a menudo',
+     data:{'4A':[15,7,1],'4B':[11,9,3],'5A':[10,10,3],'5B':[7,11,5]}},
+    {q:'Si no hubiera pantallas el próximo fin de semana, ¿qué pensarías?',a:'Genial, haré otras cosas',b:'Me costará, pero puedo',c:'Sería horrible',
+     data:{'4A':[10,11,2],'4B':[8,3,10],'5A':[7,11,5],'5B':[5,8,10]}}
+  ],
+  // Night questions (Q1-Q5 of 6th) + Q6
+  q6night: [
+    {q:'¿Qué haces nada más despertarte?',a:'Sin mirar pantallas',b:'Miro un poco (<10 min)',c:'Un rato largo mirando',
+     data:{'6B':[12,7,2],'6C':[8,10,3]}},
+    {q:'¿Dónde está tu pantalla mientras comes o cenas?',a:'Guardada en otra habitación',b:'En la mesa, boca abajo',c:'En mi mano mientras como',
+     data:{'6B':[13,7,1],'6C':[11,7,2]}},
+    {q:'¿Dónde duerme tu móvil o tablet?',a:'Fuera de mi habitación',b:'En la mesita, apagado',c:'En la cama / almohada',
+     data:{'6B':[6,13,2],'6C':[5,12,4]}},
+    {q:'¿Te quedas despierto/a usando pantallas cuando deberías estar durmiendo?',a:'Nunca, lo apago antes',b:'A veces, unos minutos',c:'Casi todas las noches',
+     data:{'6B':[10,8,3],'6C':[8,11,2]}},
+    {q:'¿Cuánto tiempo pasa entre dejar la pantalla y dormirte?',a:'Me duermo enseguida',b:'15-30 minutos',c:'Más de 30 min, me cuesta',
+     data:{'6B':[9,7,5],'6C':[4,12,5]}},
+    {q:'¿Has dejado deberes o dormir bien por las pantallas?',a:'Nunca o casi nunca',b:'Alguna vez',c:'Me pasa a menudo',
+     data:{'6B':[11,9,1],'6C':[8,11,2]}}
+  ],
+  // Dependency questions (Q7-Q12 of 6th)
+  q6dep: [
+    {q:'¿Has intentado reducir el tiempo de pantallas y no has podido?',a:'No, lo controlo bien',b:'Lo he intentado, pero me cuesta',c:'Siempre acabo usando más',
+     data:{'6B':[7,10,4],'6C':[10,9,2]}},
+    {q:'¿Qué sientes si olvidas el móvil o no tienes Wi-Fi?',a:'Nada, no me importa',b:'Un poco de molestia',c:'Mucha ansiedad',
+     data:{'6B':[14,4,3],'6C':[15,4,2]}},
+    {q:'¿Miras el móvil mientras caminas por la calle?',a:'Nunca, es peligroso',b:'Solo si llega algo importante',c:'Casi siempre',
+     data:{'6B':[16,3,2],'6C':[14,6,1]}},
+    {q:'¿Prefieres quedar con amigos en persona o chatear/jugar online?',a:'Prefiero en persona',b:'Me da igual',c:'Prefiero móvil/consola',
+     data:{'6B':[13,7,1],'6C':[10,9,2]}},
+    {q:'¿Te pones de mal humor si te quedas sin batería o sin pantallas?',a:'No, busco otra cosa',b:'Me aburro un poco',c:'Me desespero / nervioso/a',
+     data:{'6B':[12,6,3],'6C':[11,9,1]}},
+    {q:'Fin de semana sin pantallas. ¿Qué piensas?',a:'Genial, haré otras cosas',b:'Me costará, pero puedo',c:'Imposible, sería horrible',
+     data:{'6B':[9,9,3],'6C':[6,11,4]}}
+  ]
+};
+
+// ============================================================
+// UTILITIES
+// ============================================================
+function pct(v,n){return Math.round(v/n*100)}
+function $(sel){return document.querySelector(sel)}
+function $$(sel){return document.querySelectorAll(sel)}
+
+// ============================================================
+// SCROLL REVEAL
+// ============================================================
+const revealObs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')});
+},{threshold:0.08});
+function observeReveals(){$$('.reveal').forEach(el=>revealObs.observe(el))}
+
+// ============================================================
+// ANIMATED COUNTERS
+// ============================================================
+const counterObs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting||e.target.dataset.done)return;
+    e.target.dataset.done='1';
+    const target=+e.target.dataset.to;
+    const suffix=e.target.dataset.suffix||'';
+    const start=performance.now();
+    (function tick(now){
+      const t=Math.min((now-start)/1800,1);
+      const ease=1-Math.pow(1-t,3);
+      e.target.textContent=Math.round(target*ease)+suffix;
+      if(t<1)requestAnimationFrame(tick);
+    })(start);
+  });
+},{threshold:0.3});
+$$('[data-to]').forEach(el=>counterObs.observe(el));
+
+// ============================================================
+// NAV SCROLL
+// ============================================================
+addEventListener('scroll',()=>{
+  $('#nav').classList.toggle('scrolled',scrollY>80);
+});
+
+// ============================================================
+// DEVICE BARS
+// ============================================================
+function renderDevices(){
+  const container=$('#devices-container');
+  const gradeGroups = [
+    {title:'4.º de Primaria',sub:'Datos conjuntos 4ºA + 4ºB (46 alumnos)',keys:['4th'],color:'#6366f1'},
+    {title:'5.º de Primaria',sub:'5ºA (23) y 5ºB (23)',keys:['5A','5B'],color:'#0ea5e9'},
+    {title:'6.º de Primaria',sub:'6ºB (21) y 6ºC (21) · 6ºA pendiente',keys:['6B','6C'],color:'#f43f5e'}
+  ];
+  gradeGroups.forEach(g=>{
+    const section=document.createElement('div');
+    section.className='dev-section reveal';
+    let html=`<h3>${g.title}</h3><p class="meta">${g.sub}</p>`;
+    if(g.keys.length===1){
+      const d=DATA.devices[g.keys[0]];
+      html+='<div>';
+      Object.entries(d.items).forEach(([name,count])=>{
+        const p=pct(count,d.n);
+        html+=`<div class="dev-row">
+          <span class="dev-name">${name}</span>
+          <div class="dev-track"><div class="dev-fill" style="--w:${p}%;background:${g.color}">${p>15?p+'%':''}</div></div>
+          <span class="dev-pct">${p}%</span>
+        </div>`;
+      });
+      html+='</div>';
+    } else {
+      html+='<div class="dev-grid">';
+      g.keys.forEach(k=>{
+        const d=DATA.devices[k];
+        const color=DATA.classColors[k]||g.color;
+        html+=`<div><h4 style="font-size:.9rem;margin-bottom:.8rem;color:${color}">${d.label} <span style="font-weight:400;color:var(--text-light)">(${d.n} alumnos)</span></h4>`;
+        Object.entries(d.items).forEach(([name,count])=>{
+          const p=pct(count,d.n);
+          html+=`<div class="dev-row">
+            <span class="dev-name">${name}</span>
+            <div class="dev-track"><div class="dev-fill" style="--w:${p}%;background:${color}">${p>15?p+'%':''}</div></div>
+            <span class="dev-pct">${p}%</span>
+          </div>`;
+        });
+        html+='</div>';
+      });
+      html+='</div>';
+    }
+    section.innerHTML=html;
+    container.appendChild(section);
+  });
+  // Animate bars on scroll
+  const barObs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting)e.target.querySelectorAll('.dev-fill').forEach(b=>b.classList.add('animated'));
+    });
+  },{threshold:0.1});
+  $$('.dev-section').forEach(s=>barObs.observe(s));
+}
+
+// ============================================================
+// WAFFLE + STACKED BAR QUESTION BLOCKS
+// ============================================================
+function renderQuestions(containerId, questions, filterId, groupKeys){
+  const container=$('#'+containerId);
+  const filterBar=$('#'+filterId);
+  // Filter buttons
+  if(filterBar){
+    let fhtml='<button class="class-btn active" data-cls="all">Todas</button>';
+    groupKeys.forEach(k=>{
+      const color=DATA.classColors[k]||'#6366f1';
+      fhtml+=`<button class="class-btn" data-cls="${k}" style="--ac:${color}">${k}</button>`;
+    });
+    filterBar.innerHTML=fhtml;
+    filterBar.addEventListener('click',e=>{
+      const btn=e.target.closest('.class-btn');
+      if(!btn)return;
+      filterBar.querySelectorAll('.class-btn').forEach(b=>{b.classList.remove('active');b.style.background='';b.style.color='';b.style.borderColor=''});
+      btn.classList.add('active');
+      const cls=btn.dataset.cls;
+      if(cls!=='all'){
+        const color=DATA.classColors[cls];
+        btn.style.background=color;btn.style.color='#fff';btn.style.borderColor=color;
+      }
+      // Highlight/dim waffle dots
+      container.querySelectorAll('.q-class').forEach(qc=>{
+        const thisCls=qc.dataset.cls;
+        if(cls==='all'){qc.style.opacity='1';qc.querySelectorAll('.dot').forEach(d=>d.classList.remove('dim'))}
+        else if(thisCls===cls){qc.style.opacity='1';qc.querySelectorAll('.dot').forEach(d=>d.classList.remove('dim'))}
+        else{qc.style.opacity='.3'}
+      });
+    });
+  }
+
+  questions.forEach((item,qi)=>{
+    const block=document.createElement('div');
+    block.className='q-block reveal';
+    let html=`<div class="q-number">Pregunta ${qi+1}</div><div class="q-text">${item.q}</div>`;
+    const keys=Object.keys(item.data);
+    keys.forEach(cls=>{
+      const [a,b,c]=item.data[cls];
+      const n=a+b+c;
+      const pa=pct(a,n),pb=pct(b,n),pc=pct(c,n);
+      const realN=DATA.groups[cls]?.n||n;
+      html+=`<div class="q-class" data-cls="${cls}">
+        <div class="q-class-label"><span>${cls}</span><span class="n">${realN} alumnos</span></div>
+        <div class="waffle" data-a="${a}" data-b="${b}" data-c="${c}">`;
+      for(let i=0;i<n;i++){
+        const type=i<a?'a':i<a+b?'b':'c';
+        html+=`<div class="dot ${type}" title="${type==='a'?item.a:type==='b'?item.b:item.c}"></div>`;
+      }
+      html+=`</div>
+        <div class="sbar">
+          <div class="seg sa" style="width:${pa}%">${pa>8?pa+'%':''}</div>
+          <div class="seg sb" style="width:${pb}%">${pb>8?pb+'%':''}</div>
+          <div class="seg sc" style="width:${pc}%">${pc>8?pc+'%':''}</div>
+        </div>
+      </div>`;
+    });
+    html+=`<div class="q-legend">
+      <span><span class="swatch" style="background:var(--green)"></span>${item.a}</span>
+      <span><span class="swatch" style="background:var(--amber)"></span>${item.b}</span>
+      <span><span class="swatch" style="background:var(--red)"></span>${item.c}</span>
+    </div>`;
+    block.innerHTML=html;
+    container.appendChild(block);
+  });
+}
+
+// ============================================================
+// HEATMAP
+// ============================================================
+function renderHeatmap(){
+  const table=$('#heatmap');
+  // Combine all questions for classes that have them
+  const q45labels=DATA.q45.map((q,i)=>`P${i+1}: ${q.q.substring(0,40)}...`);
+  const q6labels=[...DATA.q6night,...DATA.q6dep].map((q,i)=>`P${i+1}: ${q.q.substring(0,40)}...`);
+  const classes45=Object.keys(DATA.q45[0].data);
+  const classes6=Object.keys(DATA.q6night[0].data);
+
+  let html='<thead><tr><th class="row-head">Pregunta</th>';
+  classes45.forEach(c=>html+=`<th style="color:${DATA.classColors[c]}">${c}</th>`);
+  classes6.forEach(c=>html+=`<th style="color:${DATA.classColors[c]}">${c}</th>`);
+  html+='</tr></thead><tbody>';
+
+  // 4-5th questions
+  DATA.q45.forEach((q,qi)=>{
+    html+=`<tr><th class="row-head">4-5º P${qi+1}: ${q.q.substring(0,35)}…</th>`;
+    classes45.forEach(cls=>{
+      const [a,b,c]=q.data[cls];
+      const n=a+b+c;
+      const p=pct(c,n);
+      html+=`<td style="background:${heatColor(p)};color:${p>25?'#fff':'#333'}">${p}%</td>`;
+    });
+    classes6.forEach(()=>html+='<td style="background:#f8fafc;color:#cbd5e1">—</td>');
+    html+='</tr>';
+  });
+
+  // 6th questions
+  const allQ6=[...DATA.q6night,...DATA.q6dep];
+  allQ6.forEach((q,qi)=>{
+    html+=`<tr><th class="row-head">6º P${qi+1}: ${q.q.substring(0,35)}…</th>`;
+    classes45.forEach(()=>html+='<td style="background:#f8fafc;color:#cbd5e1">—</td>');
+    classes6.forEach(cls=>{
+      const [a,b,c]=q.data[cls];
+      const n=a+b+c;
+      const p=pct(c,n);
+      html+=`<td style="background:${heatColor(p)};color:${p>25?'#fff':'#333'}">${p}%</td>`;
+    });
+    html+='</tr>';
+  });
+
+  html+='</tbody>';
+  table.innerHTML=html;
+}
+
+function heatColor(p){
+  if(p<=5)return'#d1fae5';
+  if(p<=10)return'#a7f3d0';
+  if(p<=15)return'#fef3c7';
+  if(p<=25)return'#fde68a';
+  if(p<=35)return'#fca5a5';
+  return'#ef4444';
+}
+
+// ============================================================
+// SLOPE CHART (cross-grade comparison)
+// ============================================================
+function renderSlope(){
+  const container=$('#slope-container');
+  const comparisons=[
+    {label:'Duerme con el móvil (% C)',
+     values:{'4.º':pct(1+4,46),'5.º':pct(2+5,46),'6.º':pct(2+4,42)},color:'#ef4444'},
+    {label:'Afecta a deberes/sueño (% C)',
+     values:{'4.º':pct(1+3,46),'5.º':pct(3+5,46),'6.º':pct(1+2,42)},color:'#f59e0b'},
+    {label:'Fin de semana sin pantallas = horrible (% C)',
+     values:{'4.º':pct(2+10,46),'5.º':pct(5+10,46),'6.º':pct(3+4,42)},color:'#8b5cf6'}
+  ];
+
+  const W=800,H=280,pad={l:200,r:80,t:30,b:40};
+  const grades=['4.º','5.º','6.º'];
+  const xs=grades.map((_,i)=>pad.l+i*((W-pad.l-pad.r)/(grades.length-1)));
+  const maxVal=Math.max(...comparisons.flatMap(c=>Object.values(c.values)))+5;
+
+  let svg=`<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto">`;
+  // Grid lines
+  grades.forEach((g,i)=>{
+    svg+=`<line x1="${xs[i]}" y1="${pad.t}" x2="${xs[i]}" y2="${H-pad.b}" stroke="#e2e8f0" stroke-width="1"/>`;
+    svg+=`<text x="${xs[i]}" y="${H-10}" text-anchor="middle" class="slope-label" style="font-size:14px;font-weight:600;fill:#64748b">${g}</text>`;
+  });
+
+  comparisons.forEach(comp=>{
+    const vals=grades.map(g=>comp.values[g]);
+    const ys=vals.map(v=>pad.t+(1-v/maxVal)*(H-pad.t-pad.b));
+    // Line
+    let path=`M${xs[0]},${ys[0]}`;
+    for(let i=1;i<grades.length;i++)path+=` L${xs[i]},${ys[i]}`;
+    svg+=`<path d="${path}" class="slope-line" stroke="${comp.color}" opacity=".7"/>`;
+    // Dots + values
+    grades.forEach((g,i)=>{
+      svg+=`<circle cx="${xs[i]}" cy="${ys[i]}" class="slope-dot" fill="${comp.color}"/>`;
+      svg+=`<text x="${xs[i]}" y="${ys[i]-12}" text-anchor="middle" class="slope-value" fill="${comp.color}">${vals[i]}%</text>`;
+    });
+    // Label on left
+    svg+=`<text x="${pad.l-10}" y="${ys[0]+4}" text-anchor="end" style="font-size:11px;fill:${comp.color};font-weight:500">${comp.label}</text>`;
+  });
+
+  svg+='</svg>';
+  container.innerHTML=`<div class="slope-chart">${svg}</div>`;
+}
+
+// ============================================================
+// INSIGHTS
+// ============================================================
+function renderInsights(){
+  const insights=[
+    {type:'danger',icon:'!',title:'Más de 4 h de pantallas al día',text:'El 41% de alumnos de 4.º-5.º supera las 4 horas diarias. En 4ºA llega al 57% y en 5ºB al 48%.'},
+    {type:'danger',icon:'!',title:'Dependencia del fin de semana',text:'En 4ºB y 5ºB, el 43% considera "horrible" un fin de semana sin pantallas, la cifra más alta del estudio.'},
+    {type:'warn',icon:'~',title:'Pantallas en la cama',text:'Entre un 5% y un 22% duerme con el móvil bajo la almohada. 5ºB (22%) y 4ºB (20%) lideran.'},
+    {type:'safe',icon:'✓',title:'Seguridad vial en 6.º',text:'El 71% de 6.º no mira nunca el móvil caminando por la calle. Solo un 7% dice hacerlo casi siempre.'},
+    {type:'safe',icon:'✓',title:'Relaciones sociales en 6.º',text:'El 55% de 6.º prefiere quedar con amigos en persona. Solo un 7% prefiere quedarse con el móvil o la consola.'},
+    {type:'warn',icon:'~',title:'Dificultad para reducir',text:'En 6.º, el 33% ha intentado reducir el uso de pantallas y no ha podido (en 6ºB: 48% lo intentó + 19% no pudo).'},
+    {type:'safe',icon:'✓',title:'Resiliencia sin Wi-Fi',text:'El 69% de 6.º dice que no le importa olvidar el móvil o quedarse sin Wi-Fi. Solo un 12% siente mucha ansiedad.'},
+    {type:'warn',icon:'~',title:'Impacto en deberes y sueño',text:'El 57% de 5ºB reconoce que alguna vez o a menudo ha dejado deberes o dormido mal por las pantallas.'},
+    {type:'danger',icon:'!',title:'Smart TV: el dispositivo rey',text:'El 70% de 4.º y hasta el 87% de 5ºA tiene acceso a Smart TV con YouTube, el dispositivo más extendido.'}
+  ];
+  const container=$('#insights-container');
+  insights.forEach(ins=>{
+    const div=document.createElement('div');
+    div.className=`insight ${ins.type} reveal`;
+    div.innerHTML=`<div class="insight-icon">${ins.icon}</div><div><h4>${ins.title}</h4><p>${ins.text}</p></div>`;
+    container.appendChild(div);
+  });
+}
+
+// ============================================================
+// MOBILE STAT
+// ============================================================
+function computeStats(){
+  // % with own phone in 4-5th
+  const q1=DATA.q45[0];
+  let totalA=0,totalN=0;
+  Object.entries(q1.data).forEach(([cls,vals])=>{
+    totalA+=vals[0];
+    totalN+=vals[0]+vals[1]+vals[2];
+  });
+  const movilPct=pct(totalA,totalN);
+  const el=$('#stat-movil');
+  if(el){el.dataset.to=movilPct;el.dataset.suffix='%';counterObs.observe(el)}
+}
+
+// ============================================================
+// INIT
+// ============================================================
+renderDevices();
+renderQuestions('q45-container',DATA.q45,'filter-45',Object.keys(DATA.q45[0].data));
+renderQuestions('q6-night-container',DATA.q6night,'filter-6-night',Object.keys(DATA.q6night[0].data));
+renderQuestions('q6-dep-container',DATA.q6dep,'filter-6-dep',Object.keys(DATA.q6dep[0].data));
+renderHeatmap();
+renderSlope();
+renderInsights();
+computeStats();
+observeReveals();
+</script>
+</body>
+</html>
