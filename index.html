@@ -64,6 +64,27 @@ nav.scrolled .nav-links a:hover{color:var(--text)}
 .ch-head h2{font-size:clamp(1.8rem,4vw,2.5rem);font-weight:700;color:var(--text);margin-bottom:.5rem}
 .ch-head p{color:var(--text2);font-size:1.05rem;max-width:500px}
 
+/* ====== DATOS CLAVE ====== */
+.datos-section{padding:5rem 0 3rem;background:linear-gradient(180deg,var(--bg-dark) 0%,#1e293b 100%);color:#fff;position:relative}
+.datos-section .ch-num{color:rgba(255,255,255,.06)}
+.datos-section .ch-head h2{color:#fff}
+.datos-section .ch-head p{color:rgba(255,255,255,.5)}
+.datos-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.2rem;margin-top:2rem}
+.dato-card{padding:1.8rem 1.5rem;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);text-align:center;transition:transform .3s,background .3s;position:relative;overflow:hidden}
+.dato-card:hover{transform:translateY(-4px);background:rgba(255,255,255,.1)}
+.dato-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.dato-card.tipo-red::before{background:var(--red)}
+.dato-card.tipo-amber::before{background:var(--amber)}
+.dato-card.tipo-green::before{background:var(--green)}
+.dato-card.tipo-indigo::before{background:var(--indigo)}
+.dato-val{font-family:'Space Grotesk',sans-serif;font-size:clamp(3rem,7vw,4.5rem);font-weight:700;line-height:1;margin-bottom:.4rem}
+.tipo-red .dato-val{color:#f87171}
+.tipo-amber .dato-val{color:#fbbf24}
+.tipo-green .dato-val{color:#34d399}
+.tipo-indigo .dato-val{color:#818cf8}
+.dato-label{font-size:.95rem;font-weight:600;color:rgba(255,255,255,.85);margin-bottom:.2rem}
+.dato-sub{font-size:.78rem;color:rgba(255,255,255,.4)}
+
 /* ====== NARRATIVE BREAKS ====== */
 .narrative{padding:5rem 0;text-align:center}
 .narrative p{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.4rem,3.5vw,2.2rem);font-weight:600;color:var(--text);max-width:700px;margin:0 auto;line-height:1.4}
@@ -71,19 +92,32 @@ nav.scrolled .nav-links a:hover{color:var(--text)}
 .narrative .dim{color:var(--text2);font-weight:400;font-size:.6em;display:block;margin-top:.5rem}
 
 /* ====== DEVICE BARS ====== */
-.dev-section{margin-bottom:3rem}
+.dev-section{margin-bottom:2rem}
 .dev-section h3{font-size:1.1rem;font-weight:600;margin-bottom:.3rem}
 .dev-section .meta{font-size:.8rem;color:var(--text2);margin-bottom:1.2rem}
 .dev-row{display:flex;align-items:center;gap:.8rem;margin-bottom:.6rem}
 .dev-icon{width:32px;height:32px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
 .dev-icon svg{width:22px;height:22px;stroke:var(--text2);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
-.dev-name{width:110px;flex-shrink:0;font-size:.82rem;color:var(--text2);text-align:right}
+.dev-name{width:120px;flex-shrink:0;font-size:.82rem;color:var(--text2);text-align:right}
 .dev-track{flex:1;height:26px;background:#f1f5f9;border-radius:13px;overflow:hidden;position:relative}
 .dev-fill{height:100%;border-radius:13px;display:flex;align-items:center;justify-content:flex-end;padding:0 .7rem;font-size:.75rem;font-weight:600;color:#fff;transition:width 1.2s cubic-bezier(.23,1,.32,1);width:0}
 .dev-fill.animated{width:var(--w)}
 .dev-pct{width:40px;flex-shrink:0;font-size:.82rem;font-weight:600;color:var(--text);text-align:right}
-.dev-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.dev-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem;margin-top:1rem}
 @media(max-width:700px){.dev-grid{grid-template-columns:1fr}.dev-name{width:90px}}
+
+/* ====== TOGGLE & CLASS DETAIL ====== */
+.toggle-detail{display:inline-flex;align-items:center;gap:.4rem;padding:.5rem .8rem;border:1px solid #e2e8f0;border-radius:8px;background:#fff;color:var(--text2);font-size:.82rem;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;transition:all .25s;margin-top:.8rem}
+.toggle-detail:hover{border-color:var(--indigo);color:var(--indigo);background:#f8faff}
+.toggle-detail .toggle-icon{transition:transform .3s;font-size:.65rem;display:inline-block}
+.toggle-detail.open .toggle-icon{transform:rotate(90deg)}
+.toggle-detail.open{border-color:var(--indigo);color:var(--indigo);background:var(--indigo-light)}
+.class-detail{display:none;margin-top:1rem;padding-top:1rem;border-top:1px solid #f1f5f9}
+.class-detail.show{display:block}
+.night .toggle-detail{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.12);color:rgba(255,255,255,.5)}
+.night .toggle-detail:hover{border-color:#818cf8;color:#818cf8;background:rgba(129,140,248,.1)}
+.night .toggle-detail.open{border-color:#818cf8;color:#818cf8;background:rgba(129,140,248,.15)}
+.night .class-detail{border-top-color:rgba(255,255,255,.08)}
 
 /* ====== QUESTION BLOCKS ====== */
 .q-block{margin-bottom:3rem;padding:2rem;background:#fff;border-radius:16px;box-shadow:var(--shadow);transition:transform .3s}
@@ -93,6 +127,15 @@ nav.scrolled .nav-links a:hover{color:var(--text)}
 .q-class{margin-bottom:1rem}
 .q-class-label{font-size:.78rem;font-weight:600;color:var(--text2);margin-bottom:.35rem;display:flex;justify-content:space-between}
 .q-class-label .n{font-weight:400;color:var(--text-light)}
+
+/* ====== TOTAL BAR ====== */
+.q-total{margin-bottom:.5rem;padding-bottom:.5rem}
+.q-total .q-class-label{font-size:.85rem;color:var(--text)}
+.q-total .q-class-label .n{color:var(--text2)}
+.total-bar{height:40px!important;border-radius:10px}
+.total-bar .seg{font-size:.8rem!important;font-weight:700}
+.night .q-total .q-class-label{color:#e2e8f0}
+.night .q-total .q-class-label .n{color:rgba(255,255,255,.4)}
 
 /* ====== WAFFLE CHARTS ====== */
 .waffle{display:flex;flex-wrap:wrap;gap:3px;margin-bottom:.3rem}
@@ -160,11 +203,13 @@ nav.scrolled .nav-links a:hover{color:var(--text)}
 .insight h4{font-size:1rem;font-weight:700;margin-bottom:.2rem}
 .insight p{font-size:.88rem;color:var(--text2);line-height:1.5}
 
-/* ====== CLASS FILTER ====== */
-.class-filter{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:2rem}
-.class-btn{padding:.4rem 1rem;border-radius:100px;border:1.5px solid #e2e8f0;background:#fff;color:var(--text2);font-size:.8rem;font-weight:600;cursor:pointer;transition:all .25s;font-family:'Inter',sans-serif}
-.class-btn:hover{border-color:var(--indigo);color:var(--indigo)}
-.class-btn.active{background:var(--indigo);color:#fff;border-color:var(--indigo)}
+/* ====== SLOPE CHART ====== */
+.slope-chart{position:relative;height:300px;margin:2rem 0}
+.slope-chart svg{width:100%;height:100%}
+.slope-label{font-size:.75rem;fill:var(--text2)}
+.slope-value{font-size:.85rem;font-weight:700}
+.slope-line{stroke-width:2.5;fill:none;stroke-linecap:round}
+.slope-dot{r:5}
 
 /* ====== FOOTER ====== */
 footer{padding:4rem 2rem;text-align:center;border-top:1px solid #e2e8f0}
@@ -178,14 +223,6 @@ footer .brand{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1
 .reveal-delay-2{transition-delay:.2s}
 .reveal-delay-3{transition-delay:.3s}
 
-/* ====== SLOPE CHART ====== */
-.slope-chart{position:relative;height:300px;margin:2rem 0}
-.slope-chart svg{width:100%;height:100%}
-.slope-label{font-size:.75rem;fill:var(--text2)}
-.slope-value{font-size:.85rem;font-weight:700}
-.slope-line{stroke-width:2.5;fill:none;stroke-linecap:round}
-.slope-dot{r:5}
-
 /* ====== RESPONSIVE ====== */
 @media(max-width:600px){
   .hero-stats{gap:1.5rem}
@@ -193,6 +230,11 @@ footer .brand{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1
   .waffle .dot{width:14px;height:14px}
   .q-block{padding:1.2rem}
   .ch-num{font-size:3rem}
+  .datos-grid{grid-template-columns:1fr 1fr}
+  .dato-val{font-size:2.5rem!important}
+}
+@media(max-width:400px){
+  .datos-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -202,8 +244,9 @@ footer .brand{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1
 <nav id="nav">
   <span class="nav-brand">Pantallas y Yo</span>
   <ul class="nav-links">
+    <li><a href="#datos-clave">Datos clave</a></li>
     <li><a href="#dispositivos">Dispositivos</a></li>
-    <li><a href="#habitos">Hábitos</a></li>
+    <li><a href="#habitos">H&aacute;bitos</a></li>
     <li><a href="#noche">Noche</a></li>
     <li><a href="#dependencia">Dependencia</a></li>
     <li><a href="#conclusiones">Conclusiones</a></li>
@@ -215,16 +258,28 @@ footer .brand{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1
   <div class="hero-inner container">
     <span class="hero-tag">Proyecto STEM &middot; Curso 2025&ndash;2026</span>
     <h1>Pantallas<br><em>y Yo</em></h1>
-    <p class="hero-sub">134 alumnos de 4.&ordm;, 5.&ordm; y 6.&ordm; de Primaria nos contaron la verdad sobre su relaci&oacute;n con las pantallas.</p>
+    <p class="hero-sub">156 alumnos de 4.&ordm;, 5.&ordm; y 6.&ordm; de Primaria nos contaron la verdad sobre su relaci&oacute;n con las pantallas.</p>
     <div class="hero-stats">
-      <div class="hero-stat"><span class="num" data-to="134">0</span><span class="lbl">alumnos</span></div>
-      <div class="hero-stat"><span class="num" data-to="6">0</span><span class="lbl">clases</span></div>
+      <div class="hero-stat"><span class="num" data-to="156">0</span><span class="lbl">alumnos</span></div>
+      <div class="hero-stat"><span class="num" data-to="7">0</span><span class="lbl">clases</span></div>
       <div class="hero-stat"><span class="num" data-to="3">0</span><span class="lbl">cursos</span></div>
     </div>
   </div>
   <div class="scroll-hint">
     <span>Desliza para explorar</span>
     <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+  </div>
+</section>
+
+<!-- DATOS CLAVE -->
+<section class="datos-section" id="datos-clave">
+  <div class="container">
+    <div class="ch-head reveal">
+      <span class="ch-num">&mdash;</span>
+      <h2>El cole en cifras</h2>
+      <p>Los datos m&aacute;s llamativos de los 156 alumnos encuestados.</p>
+    </div>
+    <div class="datos-grid" id="datos-grid"></div>
   </div>
 </section>
 
@@ -243,8 +298,10 @@ footer .brand{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1
 <!-- NARRATIVE -->
 <div class="narrative reveal">
   <div class="container">
-    <p>El <strong id="stat-movil">0%</strong> de los alumnos de 4.&ordm; y 5.&ordm; ya tiene su propio m&oacute;vil.
-    <span class="dim">Pero, &iquest;cu&aacute;nto tiempo pasan con &eacute;l?</span></p>
+    <div class="big-stat">
+      <div class="val c-red" data-to="41" data-suffix="%">0%</div>
+      <p class="caption">de los alumnos de 4.&ordm; y 5.&ordm; pasa <strong>m&aacute;s de 4 horas al d&iacute;a</strong> frente a pantallas</p>
+    </div>
   </div>
 </div>
 
@@ -256,20 +313,9 @@ footer .brand{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1
       <h2>El d&iacute;a a d&iacute;a</h2>
       <p>Cinco preguntas para los alumnos de 4.&ordm; y 5.&ordm; sobre sus h&aacute;bitos con las pantallas.</p>
     </div>
-    <div class="class-filter" id="filter-45"></div>
     <div id="q45-container"></div>
   </div>
 </section>
-
-<!-- BIG STAT -->
-<div class="narrative reveal">
-  <div class="container">
-    <div class="big-stat">
-      <div class="val c-red" data-to="41" data-suffix="%">0%</div>
-      <p class="caption">de los alumnos de 4.&ordm; y 5.&ordm; pasa <strong>m&aacute;s de 4 horas al d&iacute;a</strong> frente a pantallas</p>
-    </div>
-  </div>
-</div>
 
 <!-- NIGHT TRANSITION -->
 <section class="night" id="noche">
@@ -277,9 +323,8 @@ footer .brand{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1
     <div class="ch-head reveal">
       <span class="ch-num">03</span>
       <h2>Cuando se apagan las luces</h2>
-      <p>En 6.&ordm;, la encuesta profundiza en el sue&ntilde;o y las pantallas nocturnas. Datos de 6&ordm;B y 6&ordm;C (42 alumnos). 6&ordm;A pendiente.</p>
+      <p>En 6.&ordm;, la encuesta profundiza en el sue&ntilde;o y las pantallas nocturnas. Datos de 6&ordm;A, 6&ordm;B y 6&ordm;C (64 alumnos).</p>
     </div>
-    <div class="class-filter" id="filter-6-night"></div>
     <div id="q6-night-container"></div>
   </div>
 </section>
@@ -292,7 +337,6 @@ footer .brand{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1
       <h2>&iquest;Podr&iacute;a vivir sin pantallas?</h2>
       <p>Dependencia, relaciones y emociones: lo que cuentan los alumnos de 6.&ordm;.</p>
     </div>
-    <div class="class-filter" id="filter-6-dep"></div>
     <div id="q6-dep-container"></div>
   </div>
 </section>
@@ -330,22 +374,20 @@ footer .brand{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1
 <footer>
   <div class="container">
     <p class="brand">Pantallas y Yo</p>
-    <p>Proyecto STEM &middot; Curso 2025&ndash;2026 &middot; Datos de 134 alumnos (6&ordm;A pendiente)</p>
+    <p>Proyecto STEM &middot; Curso 2025&ndash;2026 &middot; Datos de 156 alumnos de 7 clases</p>
     <p style="margin-top:.3rem;opacity:.5">Encuestas an&oacute;nimas en papel, recogidas y analizadas por los alumnos</p>
   </div>
 </footer>
 
 <script>
 // ============================================================
-// DATA — Add 6A here when ready: just add entries to groups,
-// devices, and q6 data objects. Rendering auto-adapts.
+// DATA
 // ============================================================
 const DATA = {
   groups: {
     '4A':{n:23,grade:4},'4B':{n:23,grade:4},
     '5A':{n:23,grade:5},'5B':{n:23,grade:5},
-    '6B':{n:21,grade:6},'6C':{n:21,grade:6}
-    // '6A':{n:??,grade:6}  ← add when available
+    '6A':{n:22,grade:6},'6B':{n:21,grade:6},'6C':{n:21,grade:6}
   },
   classColors: {
     '4A':'#6366f1','4B':'#8b5cf6','5A':'#0ea5e9','5B':'#06b6d4',
@@ -361,6 +403,10 @@ const DATA = {
     '5B':{n:23,label:'5ºB',items:{
       'Móvil propio':18,'Móvil compartido':7,'Tablet':5,
       'Ordenador':6,'Consola':15,'Smart TV':18}},
+    '6A':{n:22,label:'6ºA',items:{
+      'Móvil propio':14,'Móvil compartido':7,'Tablet propia':10,
+      'Tablet compartida':5,'Ordenador':10,'Consola':11,
+      'Tele propia':9,'Tele familiar':16,'Smartwatch':10}},
     '6B':{n:21,label:'6ºB',items:{
       'Móvil propio':16,'Móvil compartido':1,'Tablet propia':10,
       'Tablet compartida':1,'Ordenador':14,'Consola':8,
@@ -382,35 +428,33 @@ const DATA = {
     {q:'Si no hubiera pantallas el próximo fin de semana, ¿qué pensarías?',a:'Genial, haré otras cosas',b:'Me costará, pero puedo',c:'Sería horrible',
      data:{'4A':[10,11,2],'4B':[8,3,10],'5A':[7,11,5],'5B':[5,8,10]}}
   ],
-  // Night questions (Q1-Q5 of 6th) + Q6
   q6night: [
     {q:'¿Qué haces nada más despertarte?',a:'Sin mirar pantallas',b:'Miro un poco (<10 min)',c:'Un rato largo mirando',
-     data:{'6B':[12,7,2],'6C':[8,10,3]}},
+     data:{'6A':[10,10,2],'6B':[12,7,2],'6C':[8,10,3]}},
     {q:'¿Dónde está tu pantalla mientras comes o cenas?',a:'Guardada en otra habitación',b:'En la mesa, boca abajo',c:'En mi mano mientras como',
-     data:{'6B':[13,7,1],'6C':[11,7,2]}},
+     data:{'6A':[15,5,2],'6B':[13,7,1],'6C':[11,7,2]}},
     {q:'¿Dónde duerme tu móvil o tablet?',a:'Fuera de mi habitación',b:'En la mesita, apagado',c:'En la cama / almohada',
-     data:{'6B':[6,13,2],'6C':[5,12,4]}},
+     data:{'6A':[11,8,2],'6B':[6,13,2],'6C':[5,12,4]}},
     {q:'¿Te quedas despierto/a usando pantallas cuando deberías estar durmiendo?',a:'Nunca, lo apago antes',b:'A veces, unos minutos',c:'Casi todas las noches',
-     data:{'6B':[10,8,3],'6C':[8,11,2]}},
+     data:{'6A':[10,11,1],'6B':[10,8,3],'6C':[8,11,2]}},
     {q:'¿Cuánto tiempo pasa entre dejar la pantalla y dormirte?',a:'Me duermo enseguida',b:'15-30 minutos',c:'Más de 30 min, me cuesta',
-     data:{'6B':[9,7,5],'6C':[4,12,5]}},
+     data:{'6A':[11,7,4],'6B':[9,7,5],'6C':[4,12,5]}},
     {q:'¿Has dejado deberes o dormir bien por las pantallas?',a:'Nunca o casi nunca',b:'Alguna vez',c:'Me pasa a menudo',
-     data:{'6B':[11,9,1],'6C':[8,11,2]}}
+     data:{'6A':[13,8,1],'6B':[11,9,1],'6C':[8,11,2]}}
   ],
-  // Dependency questions (Q7-Q12 of 6th)
   q6dep: [
     {q:'¿Has intentado reducir el tiempo de pantallas y no has podido?',a:'No, lo controlo bien',b:'Lo he intentado, pero me cuesta',c:'Siempre acabo usando más',
-     data:{'6B':[7,10,4],'6C':[10,9,2]}},
+     data:{'6A':[14,6,2],'6B':[7,10,4],'6C':[10,9,2]}},
     {q:'¿Qué sientes si olvidas el móvil o no tienes Wi-Fi?',a:'Nada, no me importa',b:'Un poco de molestia',c:'Mucha ansiedad',
-     data:{'6B':[14,4,3],'6C':[15,4,2]}},
+     data:{'6A':[14,7,1],'6B':[14,4,3],'6C':[15,4,2]}},
     {q:'¿Miras el móvil mientras caminas por la calle?',a:'Nunca, es peligroso',b:'Solo si llega algo importante',c:'Casi siempre',
-     data:{'6B':[16,3,2],'6C':[14,6,1]}},
+     data:{'6A':[12,7,3],'6B':[16,3,2],'6C':[14,6,1]}},
     {q:'¿Prefieres quedar con amigos en persona o chatear/jugar online?',a:'Prefiero en persona',b:'Me da igual',c:'Prefiero móvil/consola',
-     data:{'6B':[13,7,1],'6C':[10,9,2]}},
+     data:{'6A':[17,5,0],'6B':[13,7,1],'6C':[10,9,2]}},
     {q:'¿Te pones de mal humor si te quedas sin batería o sin pantallas?',a:'No, busco otra cosa',b:'Me aburro un poco',c:'Me desespero / nervioso/a',
-     data:{'6B':[12,6,3],'6C':[11,9,1]}},
+     data:{'6A':[8,11,3],'6B':[12,6,3],'6C':[11,9,1]}},
     {q:'Fin de semana sin pantallas. ¿Qué piensas?',a:'Genial, haré otras cosas',b:'Me costará, pero puedo',c:'Imposible, sería horrible',
-     data:{'6B':[9,9,3],'6C':[6,11,4]}}
+     data:{'6A':[7,11,4],'6B':[9,9,3],'6C':[6,11,4]}}
   ]
 };
 
@@ -447,7 +491,12 @@ const counterObs = new IntersectionObserver(entries=>{
     })(start);
   });
 },{threshold:0.3});
-$$('[data-to]').forEach(el=>counterObs.observe(el));
+
+function observeCounters(){
+  $$('[data-to]').forEach(el=>{
+    if(!el.dataset.done) counterObs.observe(el);
+  });
+}
 
 // ============================================================
 // NAV SCROLL
@@ -457,18 +506,122 @@ addEventListener('scroll',()=>{
 });
 
 // ============================================================
+// COMPUTE GLOBALS
+// ============================================================
+function computeGlobals(){
+  const G = {};
+  const total = 156, total45 = 92, total6 = 64;
+
+  // 1. Móvil propio (all school, from devices data)
+  let movil = 0;
+  Object.values(DATA.devices).forEach(g=>{
+    if(g.items['Móvil propio']) movil += g.items['Móvil propio'];
+  });
+  G.movilPropio = {count:movil, pct:pct(movil,total)};
+
+  // 2. +4h pantallas (4-5 only)
+  let h4 = 0;
+  Object.values(DATA.q45[1].data).forEach(d=>h4+=d[2]);
+  G.mas4h = {count:h4, pct:pct(h4,total45)};
+
+  // 3. Duerme con móvil en la cama (all school)
+  let cama = 0;
+  Object.values(DATA.q45[2].data).forEach(d=>cama+=d[2]);
+  Object.values(DATA.q6night[2].data).forEach(d=>cama+=d[2]);
+  G.movilCama = {count:cama, pct:pct(cama,total)};
+
+  // 4. Fin de semana sin pantallas = horrible (all school)
+  let horrible = 0;
+  Object.values(DATA.q45[4].data).forEach(d=>horrible+=d[2]);
+  Object.values(DATA.q6dep[5].data).forEach(d=>horrible+=d[2]);
+  G.finDeSemana = {count:horrible, pct:pct(horrible,total)};
+
+  // 5. Prefiere quedar en persona (6th only)
+  let persona = 0;
+  Object.values(DATA.q6dep[3].data).forEach(d=>persona+=d[0]);
+  G.enPersona = {count:persona, pct:pct(persona,total6)};
+
+  return G;
+}
+
+// ============================================================
+// RENDER DATOS CLAVE
+// ============================================================
+function renderDatosClave(){
+  const G = computeGlobals();
+  const grid = $('#datos-grid');
+  const cards = [
+    {val:G.movilPropio.pct,suffix:'%',label:'tienen m\u00f3vil propio',sub:`${G.movilPropio.count} de 156 alumnos`,tipo:'red'},
+    {val:G.mas4h.pct,suffix:'%',label:'m\u00e1s de 4h de pantallas al d\u00eda',sub:'Alumnos de 4.\u00ba y 5.\u00ba (92)',tipo:'red'},
+    {val:G.finDeSemana.pct,suffix:'%',label:'un finde sin pantallas ser\u00eda \u00abhorrible\u00bb',sub:`${G.finDeSemana.count} de 156 alumnos`,tipo:'amber'},
+    {val:G.movilCama.pct,suffix:'%',label:'duermen con el m\u00f3vil en la cama',sub:`${G.movilCama.count} de 156 alumnos`,tipo:'amber'},
+    {val:G.enPersona.pct,suffix:'%',label:'prefieren quedar en persona',sub:'Alumnos de 6.\u00ba (64)',tipo:'green'}
+  ];
+  cards.forEach((c,i)=>{
+    const div = document.createElement('div');
+    div.className = `dato-card tipo-${c.tipo} reveal reveal-delay-${Math.min(i,3)}`;
+    div.innerHTML = `<div class="dato-val" data-to="${c.val}" data-suffix="${c.suffix}">0${c.suffix}</div>
+      <div class="dato-label">${c.label}</div>
+      <div class="dato-sub">${c.sub}</div>`;
+    grid.appendChild(div);
+  });
+}
+
+// ============================================================
 // DEVICE BARS
 // ============================================================
 function renderDevices(){
   const container=$('#devices-container');
+  const totalN = 156;
+
+  // --- Global device summary ---
+  const nameMap = {
+    'Televisi\u00f3n':['Smart TV','Tele familiar'],
+    'M\u00f3vil propio':['Móvil propio'],
+    'Consola':['Consola'],
+    'Tablet':['Tablet','Tablet propia'],
+    'Ordenador':['Ordenador'],
+    'M\u00f3vil compartido':['Móvil compartido']
+  };
+  const globalDevs = {};
+  Object.entries(nameMap).forEach(([gName,aliases])=>{
+    let c=0;
+    Object.values(DATA.devices).forEach(grp=>{
+      aliases.forEach(a=>{if(grp.items[a])c+=grp.items[a]});
+    });
+    globalDevs[gName]=c;
+  });
+
+  const globalSection = document.createElement('div');
+  globalSection.className = 'dev-section reveal';
+  let gh = '<h3 style="font-size:1.15rem">Todo el colegio</h3><p class="meta">156 alumnos &middot; Porcentaje que tiene cada dispositivo</p><div>';
+  const devColors = {'Televisi\u00f3n':'#6366f1','M\u00f3vil propio':'#ef4444','Consola':'#f59e0b','Tablet':'#06b6d4','Ordenador':'#0ea5e9','M\u00f3vil compartido':'#8b5cf6'};
+  Object.entries(globalDevs).sort((a,b)=>b[1]-a[1]).forEach(([name,count])=>{
+    const p=pct(count,totalN);
+    const col=devColors[name]||'var(--indigo)';
+    gh+=`<div class="dev-row">
+      <span class="dev-name">${name}</span>
+      <div class="dev-track"><div class="dev-fill" style="--w:${p}%;background:${col}">${p>15?p+'%':''}</div></div>
+      <span class="dev-pct">${p}%</span>
+    </div>`;
+  });
+  gh+='</div>';
+  gh+=`<button class="toggle-detail" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('show')"><span class="toggle-icon">&#9654;</span> Ver por curso</button>`;
+  globalSection.innerHTML=gh;
+  container.appendChild(globalSection);
+
+  // --- Per-grade detail (hidden by default) ---
+  const detail = document.createElement('div');
+  detail.className = 'class-detail';
   const gradeGroups = [
-    {title:'4.º de Primaria',sub:'Datos conjuntos 4ºA + 4ºB (46 alumnos)',keys:['4th'],color:'#6366f1'},
-    {title:'5.º de Primaria',sub:'5ºA (23) y 5ºB (23)',keys:['5A','5B'],color:'#0ea5e9'},
-    {title:'6.º de Primaria',sub:'6ºB (21) y 6ºC (21) · 6ºA pendiente',keys:['6B','6C'],color:'#f43f5e'}
+    {title:'4.\u00ba de Primaria',sub:'Datos conjuntos 4\u00baA + 4\u00baB (46 alumnos)',keys:['4th'],color:'#6366f1'},
+    {title:'5.\u00ba de Primaria',sub:'5\u00baA (23) y 5\u00baB (23)',keys:['5A','5B'],color:'#0ea5e9'},
+    {title:'6.\u00ba de Primaria',sub:'6\u00baA (22), 6\u00baB (21) y 6\u00baC (21)',keys:['6A','6B','6C'],color:'#f43f5e'}
   ];
   gradeGroups.forEach(g=>{
     const section=document.createElement('div');
-    section.className='dev-section reveal';
+    section.className='dev-section';
+    section.style.marginTop='1.5rem';
     let html=`<h3>${g.title}</h3><p class="meta">${g.sub}</p>`;
     if(g.keys.length===1){
       const d=DATA.devices[g.keys[0]];
@@ -501,63 +654,65 @@ function renderDevices(){
       html+='</div>';
     }
     section.innerHTML=html;
-    container.appendChild(section);
+    detail.appendChild(section);
   });
+  container.appendChild(detail);
+
   // Animate bars on scroll
   const barObs=new IntersectionObserver(entries=>{
     entries.forEach(e=>{
       if(e.isIntersecting)e.target.querySelectorAll('.dev-fill').forEach(b=>b.classList.add('animated'));
     });
   },{threshold:0.1});
-  $$('.dev-section').forEach(s=>barObs.observe(s));
+  container.querySelectorAll('.dev-section').forEach(s=>barObs.observe(s));
 }
 
 // ============================================================
-// WAFFLE + STACKED BAR QUESTION BLOCKS
+// WAFFLE + STACKED BAR QUESTION BLOCKS (with TOTAL)
 // ============================================================
-function renderQuestions(containerId, questions, filterId, groupKeys){
+function renderQuestions(containerId, questions, groupKeys){
   const container=$('#'+containerId);
-  const filterBar=$('#'+filterId);
-  // Filter buttons
-  if(filterBar){
-    let fhtml='<button class="class-btn active" data-cls="all">Todas</button>';
-    groupKeys.forEach(k=>{
-      const color=DATA.classColors[k]||'#6366f1';
-      fhtml+=`<button class="class-btn" data-cls="${k}" style="--ac:${color}">${k}</button>`;
-    });
-    filterBar.innerHTML=fhtml;
-    filterBar.addEventListener('click',e=>{
-      const btn=e.target.closest('.class-btn');
-      if(!btn)return;
-      filterBar.querySelectorAll('.class-btn').forEach(b=>{b.classList.remove('active');b.style.background='';b.style.color='';b.style.borderColor=''});
-      btn.classList.add('active');
-      const cls=btn.dataset.cls;
-      if(cls!=='all'){
-        const color=DATA.classColors[cls];
-        btn.style.background=color;btn.style.color='#fff';btn.style.borderColor=color;
-      }
-      // Highlight/dim waffle dots
-      container.querySelectorAll('.q-class').forEach(qc=>{
-        const thisCls=qc.dataset.cls;
-        if(cls==='all'){qc.style.opacity='1';qc.querySelectorAll('.dot').forEach(d=>d.classList.remove('dim'))}
-        else if(thisCls===cls){qc.style.opacity='1';qc.querySelectorAll('.dot').forEach(d=>d.classList.remove('dim'))}
-        else{qc.style.opacity='.3'}
-      });
-    });
-  }
 
   questions.forEach((item,qi)=>{
     const block=document.createElement('div');
     block.className='q-block reveal';
-    let html=`<div class="q-number">Pregunta ${qi+1}</div><div class="q-text">${item.q}</div>`;
+
+    // Calculate TOTAL across all classes
+    const totalArr=[0,0,0];
     const keys=Object.keys(item.data);
+    keys.forEach(cls=>{
+      totalArr[0]+=item.data[cls][0];
+      totalArr[1]+=item.data[cls][1];
+      totalArr[2]+=item.data[cls][2];
+    });
+    const totalN=totalArr[0]+totalArr[1]+totalArr[2];
+    const tpa=pct(totalArr[0],totalN),tpb=pct(totalArr[1],totalN),tpc=pct(totalArr[2],totalN);
+
+    let html=`<div class="q-number">Pregunta ${qi+1}</div><div class="q-text">${item.q}</div>`;
+
+    // --- TOTAL BAR (prominent) ---
+    html+=`<div class="q-class q-total">
+      <div class="q-class-label"><span><strong>TOTAL</strong></span><span class="n">${totalN} respuestas</span></div>
+      <div class="sbar total-bar">
+        <div class="seg sa" style="width:${tpa}%">${tpa>6?tpa+'%':''}</div>
+        <div class="seg sb" style="width:${tpb}%">${tpb>6?tpb+'%':''}</div>
+        <div class="seg sc" style="width:${tpc}%">${tpc>6?tpc+'%':''}</div>
+      </div>
+    </div>`;
+
+    // --- Toggle ---
+    const toggleId = containerId+'-q'+qi;
+    html+=`<button class="toggle-detail" onclick="this.classList.toggle('open');document.getElementById('${toggleId}').classList.toggle('show')"><span class="toggle-icon">&#9654;</span> Ver por clase</button>`;
+
+    // --- Class detail (hidden) ---
+    html+=`<div class="class-detail" id="${toggleId}">`;
     keys.forEach(cls=>{
       const [a,b,c]=item.data[cls];
       const n=a+b+c;
       const pa=pct(a,n),pb=pct(b,n),pc=pct(c,n);
       const realN=DATA.groups[cls]?.n||n;
       html+=`<div class="q-class" data-cls="${cls}">
-        <div class="q-class-label"><span>${cls}</span><span class="n">${realN} alumnos</span></div>
+        <div class="q-class-label"><span style="color:${DATA.classColors[cls]||'var(--text2)'}">${cls}</span><span class="n">${realN} alumnos</span></div>
         <div class="waffle" data-a="${a}" data-b="${b}" data-c="${c}">`;
       for(let i=0;i<n;i++){
         const type=i<a?'a':i<a+b?'b':'c';
@@ -571,6 +726,9 @@ function renderQuestions(containerId, questions, filterId, groupKeys){
         </div>
       </div>`;
     });
+    html+=`</div>`;
+
+    // --- Legend ---
     html+=`<div class="q-legend">
       <span><span class="swatch" style="background:var(--green)"></span>${item.a}</span>
       <span><span class="swatch" style="background:var(--amber)"></span>${item.b}</span>
@@ -586,9 +744,6 @@ function renderQuestions(containerId, questions, filterId, groupKeys){
 // ============================================================
 function renderHeatmap(){
   const table=$('#heatmap');
-  // Combine all questions for classes that have them
-  const q45labels=DATA.q45.map((q,i)=>`P${i+1}: ${q.q.substring(0,40)}...`);
-  const q6labels=[...DATA.q6night,...DATA.q6dep].map((q,i)=>`P${i+1}: ${q.q.substring(0,40)}...`);
   const classes45=Object.keys(DATA.q45[0].data);
   const classes6=Object.keys(DATA.q6night[0].data);
 
@@ -597,28 +752,22 @@ function renderHeatmap(){
   classes6.forEach(c=>html+=`<th style="color:${DATA.classColors[c]}">${c}</th>`);
   html+='</tr></thead><tbody>';
 
-  // 4-5th questions
   DATA.q45.forEach((q,qi)=>{
-    html+=`<tr><th class="row-head">4-5º P${qi+1}: ${q.q.substring(0,35)}…</th>`;
+    html+=`<tr><th class="row-head">4-5\u00ba P${qi+1}: ${q.q.substring(0,35)}\u2026</th>`;
     classes45.forEach(cls=>{
-      const [a,b,c]=q.data[cls];
-      const n=a+b+c;
-      const p=pct(c,n);
+      const [a,b,c]=q.data[cls];const n=a+b+c;const p=pct(c,n);
       html+=`<td style="background:${heatColor(p)};color:${p>25?'#fff':'#333'}">${p}%</td>`;
     });
-    classes6.forEach(()=>html+='<td style="background:#f8fafc;color:#cbd5e1">—</td>');
+    classes6.forEach(()=>html+='<td style="background:#f8fafc;color:#cbd5e1">\u2014</td>');
     html+='</tr>';
   });
 
-  // 6th questions
   const allQ6=[...DATA.q6night,...DATA.q6dep];
   allQ6.forEach((q,qi)=>{
-    html+=`<tr><th class="row-head">6º P${qi+1}: ${q.q.substring(0,35)}…</th>`;
-    classes45.forEach(()=>html+='<td style="background:#f8fafc;color:#cbd5e1">—</td>');
+    html+=`<tr><th class="row-head">6\u00ba P${qi+1}: ${q.q.substring(0,35)}\u2026</th>`;
+    classes45.forEach(()=>html+='<td style="background:#f8fafc;color:#cbd5e1">\u2014</td>');
     classes6.forEach(cls=>{
-      const [a,b,c]=q.data[cls];
-      const n=a+b+c;
-      const p=pct(c,n);
+      const [a,b,c]=q.data[cls];const n=a+b+c;const p=pct(c,n);
       html+=`<td style="background:${heatColor(p)};color:${p>25?'#fff':'#333'}">${p}%</td>`;
     });
     html+='</tr>';
@@ -643,21 +792,20 @@ function heatColor(p){
 function renderSlope(){
   const container=$('#slope-container');
   const comparisons=[
-    {label:'Duerme con el móvil (% C)',
-     values:{'4.º':pct(1+4,46),'5.º':pct(2+5,46),'6.º':pct(2+4,42)},color:'#ef4444'},
-    {label:'Afecta a deberes/sueño (% C)',
-     values:{'4.º':pct(1+3,46),'5.º':pct(3+5,46),'6.º':pct(1+2,42)},color:'#f59e0b'},
+    {label:'Duerme con el m\u00f3vil (% C)',
+     values:{'4.\u00ba':pct(1+4,46),'5.\u00ba':pct(2+5,46),'6.\u00ba':pct(2+2+4,64)},color:'#ef4444'},
+    {label:'Afecta a deberes/sue\u00f1o (% C)',
+     values:{'4.\u00ba':pct(1+3,46),'5.\u00ba':pct(3+5,46),'6.\u00ba':pct(1+1+2,64)},color:'#f59e0b'},
     {label:'Fin de semana sin pantallas = horrible (% C)',
-     values:{'4.º':pct(2+10,46),'5.º':pct(5+10,46),'6.º':pct(3+4,42)},color:'#8b5cf6'}
+     values:{'4.\u00ba':pct(2+10,46),'5.\u00ba':pct(5+10,46),'6.\u00ba':pct(4+3+4,64)},color:'#8b5cf6'}
   ];
 
   const W=800,H=280,pad={l:200,r:80,t:30,b:40};
-  const grades=['4.º','5.º','6.º'];
+  const grades=['4.\u00ba','5.\u00ba','6.\u00ba'];
   const xs=grades.map((_,i)=>pad.l+i*((W-pad.l-pad.r)/(grades.length-1)));
   const maxVal=Math.max(...comparisons.flatMap(c=>Object.values(c.values)))+5;
 
   let svg=`<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto">`;
-  // Grid lines
   grades.forEach((g,i)=>{
     svg+=`<line x1="${xs[i]}" y1="${pad.t}" x2="${xs[i]}" y2="${H-pad.b}" stroke="#e2e8f0" stroke-width="1"/>`;
     svg+=`<text x="${xs[i]}" y="${H-10}" text-anchor="middle" class="slope-label" style="font-size:14px;font-weight:600;fill:#64748b">${g}</text>`;
@@ -666,16 +814,13 @@ function renderSlope(){
   comparisons.forEach(comp=>{
     const vals=grades.map(g=>comp.values[g]);
     const ys=vals.map(v=>pad.t+(1-v/maxVal)*(H-pad.t-pad.b));
-    // Line
     let path=`M${xs[0]},${ys[0]}`;
     for(let i=1;i<grades.length;i++)path+=` L${xs[i]},${ys[i]}`;
     svg+=`<path d="${path}" class="slope-line" stroke="${comp.color}" opacity=".7"/>`;
-    // Dots + values
     grades.forEach((g,i)=>{
       svg+=`<circle cx="${xs[i]}" cy="${ys[i]}" class="slope-dot" fill="${comp.color}"/>`;
       svg+=`<text x="${xs[i]}" y="${ys[i]-12}" text-anchor="middle" class="slope-value" fill="${comp.color}">${vals[i]}%</text>`;
     });
-    // Label on left
     svg+=`<text x="${pad.l-10}" y="${ys[0]+4}" text-anchor="end" style="font-size:11px;fill:${comp.color};font-weight:500">${comp.label}</text>`;
   });
 
@@ -688,15 +833,15 @@ function renderSlope(){
 // ============================================================
 function renderInsights(){
   const insights=[
-    {type:'danger',icon:'!',title:'Más de 4 h de pantallas al día',text:'El 41% de alumnos de 4.º-5.º supera las 4 horas diarias. En 4ºA llega al 57% y en 5ºB al 48%.'},
-    {type:'danger',icon:'!',title:'Dependencia del fin de semana',text:'En 4ºB y 5ºB, el 43% considera "horrible" un fin de semana sin pantallas, la cifra más alta del estudio.'},
-    {type:'warn',icon:'~',title:'Pantallas en la cama',text:'Entre un 5% y un 22% duerme con el móvil bajo la almohada. 5ºB (22%) y 4ºB (20%) lideran.'},
-    {type:'safe',icon:'✓',title:'Seguridad vial en 6.º',text:'El 71% de 6.º no mira nunca el móvil caminando por la calle. Solo un 7% dice hacerlo casi siempre.'},
-    {type:'safe',icon:'✓',title:'Relaciones sociales en 6.º',text:'El 55% de 6.º prefiere quedar con amigos en persona. Solo un 7% prefiere quedarse con el móvil o la consola.'},
-    {type:'warn',icon:'~',title:'Dificultad para reducir',text:'En 6.º, el 33% ha intentado reducir el uso de pantallas y no ha podido (en 6ºB: 48% lo intentó + 19% no pudo).'},
-    {type:'safe',icon:'✓',title:'Resiliencia sin Wi-Fi',text:'El 69% de 6.º dice que no le importa olvidar el móvil o quedarse sin Wi-Fi. Solo un 12% siente mucha ansiedad.'},
-    {type:'warn',icon:'~',title:'Impacto en deberes y sueño',text:'El 57% de 5ºB reconoce que alguna vez o a menudo ha dejado deberes o dormido mal por las pantallas.'},
-    {type:'danger',icon:'!',title:'Smart TV: el dispositivo rey',text:'El 70% de 4.º y hasta el 87% de 5ºA tiene acceso a Smart TV con YouTube, el dispositivo más extendido.'}
+    {type:'danger',icon:'!',title:'M\u00e1s de 4 h de pantallas al d\u00eda',text:'El 41% de alumnos de 4.\u00ba-5.\u00ba supera las 4 horas diarias. En 4\u00baA llega al 57% y en 5\u00baB al 48%.'},
+    {type:'danger',icon:'!',title:'Dependencia del fin de semana',text:'En 4\u00baB y 5\u00baB, el 43% considera \u201chorrible\u201d un fin de semana sin pantallas, la cifra m\u00e1s alta del estudio.'},
+    {type:'warn',icon:'~',title:'Pantallas en la cama',text:'Entre un 5% y un 22% duerme con el m\u00f3vil bajo la almohada. 5\u00baB (22%) y 4\u00baB (20%) lideran.'},
+    {type:'safe',icon:'\u2713',title:'Seguridad vial en 6.\u00ba',text:'El 66% de 6.\u00ba no mira nunca el m\u00f3vil caminando por la calle. Solo un 9% dice hacerlo casi siempre.'},
+    {type:'safe',icon:'\u2713',title:'Relaciones sociales en 6.\u00ba',text:'El 63% de 6.\u00ba prefiere quedar con amigos en persona. En 6\u00baA, el 77% elige verse en persona y ning\u00fan alumno prefiere quedarse en casa.'},
+    {type:'warn',icon:'~',title:'Dificultad para reducir',text:'En 6.\u00ba, el 39% ha intentado reducir el uso de pantallas y le cuesta o no puede (en 6\u00baB: 48% lo intent\u00f3 + 19% no pudo).'},
+    {type:'safe',icon:'\u2713',title:'Resiliencia sin Wi-Fi',text:'El 67% de 6.\u00ba dice que no le importa olvidar el m\u00f3vil o quedarse sin Wi-Fi. Solo un 9% siente mucha ansiedad.'},
+    {type:'warn',icon:'~',title:'Impacto en deberes y sue\u00f1o',text:'El 57% de 5\u00baB reconoce que alguna vez o a menudo ha dejado deberes o dormido mal por las pantallas.'},
+    {type:'danger',icon:'!',title:'Smart TV: el dispositivo rey',text:'El 70% de 4.\u00ba y hasta el 87% de 5\u00baA tiene acceso a Smart TV con YouTube, el dispositivo m\u00e1s extendido.'}
   ];
   const container=$('#insights-container');
   insights.forEach(ins=>{
@@ -708,32 +853,17 @@ function renderInsights(){
 }
 
 // ============================================================
-// MOBILE STAT
-// ============================================================
-function computeStats(){
-  // % with own phone in 4-5th
-  const q1=DATA.q45[0];
-  let totalA=0,totalN=0;
-  Object.entries(q1.data).forEach(([cls,vals])=>{
-    totalA+=vals[0];
-    totalN+=vals[0]+vals[1]+vals[2];
-  });
-  const movilPct=pct(totalA,totalN);
-  const el=$('#stat-movil');
-  if(el){el.dataset.to=movilPct;el.dataset.suffix='%';counterObs.observe(el)}
-}
-
-// ============================================================
 // INIT
 // ============================================================
+renderDatosClave();
 renderDevices();
-renderQuestions('q45-container',DATA.q45,'filter-45',Object.keys(DATA.q45[0].data));
-renderQuestions('q6-night-container',DATA.q6night,'filter-6-night',Object.keys(DATA.q6night[0].data));
-renderQuestions('q6-dep-container',DATA.q6dep,'filter-6-dep',Object.keys(DATA.q6dep[0].data));
+renderQuestions('q45-container',DATA.q45,Object.keys(DATA.q45[0].data));
+renderQuestions('q6-night-container',DATA.q6night,Object.keys(DATA.q6night[0].data));
+renderQuestions('q6-dep-container',DATA.q6dep,Object.keys(DATA.q6dep[0].data));
 renderHeatmap();
 renderSlope();
 renderInsights();
-computeStats();
+observeCounters();
 observeReveals();
 </script>
 </body>
